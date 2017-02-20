@@ -6,19 +6,21 @@ delta_t = 1./Fs
 N = 512.
 t = np.linspace(0,N,Fs)
 
-f = 13./N
+f = [13./N,13.2/N]
 
-x = np.sin(2*np.pi*f*t)
+for f in f:
 
-plt.plot(Fs*t,x)
+	x = np.sin(2*np.pi*f*t)
 
-X = np.fft.fft(x,int(N))/N
+	plt.plot(Fs*t,x)
 
-frekv = (Fs/2.)*np.linspace(0,1,N/2.)
+	X = np.fft.fft(x,int(N))/N
 
-plt.figure()
+	frekv = (Fs/2.)*np.linspace(0,1,N/2.)
 
-plt.plot(frekv,2*np.abs(X[0:N/2.]))
-print f
-plt.show()
+	plt.figure()
+
+	plt.plot(frekv,2*np.abs(X[0:N/2.]))
+
+	plt.show()
 
