@@ -15,17 +15,18 @@ times = np.array(times)
 sunspots = np.array(sunspots)
 
 plt.plot(times,sunspots,"-b")
+plt.title("Antall solflekker")
 plt.xlabel("Tid")
 plt.ylabel("Solflekker")
 
 X = np.fft.fft(sunspots)/(len(sunspots))
-frekv = np.linspace(0,1,len(sunspots)/2)
+frekv = np.linspace(0,1,len(sunspots))
 #frekv = 1./times
 
 
 plt.figure()
 
 plt.plot(frekv[0:len(times)/2.],2*np.abs(X[0:len(sunspots)/2.]))
-
-
+plt.xlabel("Frekvens/Hz")
+plt.ylabel("|X(frekv)|")
 plt.show()

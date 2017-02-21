@@ -13,6 +13,9 @@ for f in f:
 	x = np.sin(2*np.pi*f*t)
 
 	plt.plot(Fs*t,x)
+	plt.title("Opprinnelig signal i tidsbildet")
+	plt.xlabel("tid/ms")
+	plt.ylabel("Utslag")
 
 	X = np.fft.fft(x,int(N))/N
 
@@ -21,6 +24,9 @@ for f in f:
 	plt.figure()
 
 	plt.plot(frekv,2*np.abs(X[0:N/2.]))
+	plt.title("Absolutt-verdier av frekvensspekteret")
+	plt.xlabel("Frekvens/Hz")
+	plt.ylabel("|X(frekv)|")
 
 	plt.show()
 

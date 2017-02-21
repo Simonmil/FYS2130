@@ -16,6 +16,7 @@ for freq in freqs:
 	plt.plot(Fs*t,x) # Plotting av signalet i tidsbildet
 	plt.title("Opprinnelig signal i tidsbildet")
 	plt.xlabel("tid/ms")
+	plt.ylabel("Utslag")
 
 	X = np.fft.fft(x,N)/N # Fouriertrans
 
