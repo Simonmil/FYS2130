@@ -27,6 +27,6 @@ for f in f:
 	plt.title("Absolutt-verdier av frekvensspekteret")
 	plt.xlabel("Frekvens/Hz")
 	plt.ylabel("|X(frekv)|")
-
+	
 	plt.show()
 
