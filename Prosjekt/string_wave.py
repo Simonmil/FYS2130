@@ -35,3 +35,4 @@ class String_Wave:
 
 	def integrator(self,y_0,y_min,y_pluss):
 		
+		
