@@ -10,7 +10,7 @@ m[-1] = m[0]
 k = np.zeros(N-1)
 k[:] = 10. # kg/s2
 dt = np.sqrt(m[1]/k[0])*1e-1
-maxt = 5000
+maxt = 5714
 #maxt = ((N/3.5)*np.sqrt(m[1]/k[1])*10)/dt
 
 y_0 = np.array([np.sin(7*np.pi*i/(N-1)) for i in range(int(N))])
@@ -39,12 +39,18 @@ for t in range(int(maxt)):
 
 numfreq = count/(dt*maxt)
 print numfreq
-anim.append(plt.plot(pos99,'-b'))
 
-fftpos99 = np.fft.fft(pos99)
-plt.plot(np.abs(fftpos99)**2)
-
-fig = plt.figure(1)
-plot = ArtistAnimation(fig,anim,interval=25)
+plt.figure(1)
+plt.plot(pos99)
+plt.xlabel('Position on the string')
+plt.ylabel('Amplitude')
+plt.title('The movement of position 100 as time progresses')
 plt.show()
 
+FFtpos99 = np.fft.fft(pos99)/(len(pos99))
+frekv = np.linspace(0,1,len(pos99))
+
+
+plt.figure(2)
+plt.plot(frekv,2*abs(FFtpos99)**2)
+plt.show()

@@ -12,19 +12,30 @@ k = np.zeros(N-1)
 k[:] = 10. # kg/s2
 dt = np.sqrt(m[1]/k[0])*1e-1
 #maxt = ((N/3.5)*np.sqrt(m[1]/k[1])*10)/dt
-
+vB = np.sqrt(k[1]/m[1])
 
 y_0 = np.zeros(N)
 y_minus = np.zeros(N)
 y_pluss = np.zeros(N)
 
-for i in range(0,31,1):
-	y_0[i] = i/30. 
-	y_minus[i] = i/30.
 
-for i in range(30,60,1):
-	y_0[i] = (59-i)/30. 
-	y_minus[i] = (59-i)/30. 
+for i in range(int(N)):
+	if 1 <= i <= 30:
+		y_0[i] = i/30.
+	elif 31 <= i <= 60:
+		y_0[i] = (60. - i)/30.
+	else:
+		y_0[i] = 0
+
+
+for i in range(int(N)):
+	if 0 <= i <= 29:
+		y_minus[i] = y_0[i] + 1/30.*dt*vB
+	elif 30 <= i <= 59:
+		y_minus[i] = y_0[i] - 1/30.*dt*vB
+	else:
+		y_0[i] = y_0[i]
+
 
 anim = []
 for t in range(4000):
