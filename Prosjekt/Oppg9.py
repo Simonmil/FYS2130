@@ -2,15 +2,17 @@ import numpy as np
 import pylab as plt
 from matplotlib.animation import ArtistAnimation
 
-N = 200. # masspoints
+N = 400. # masspoints
 m = np.zeros(N)
-m[1:N-1] = 0.02 # kg
+m[1:200] = 0.02 # kg
+m[200:399] = 0.06 # kg
 m[0] = 100000. # kg
 m[-1] = m[0]
 k = np.zeros(N-1)
 k[:] = 10. # kg/s2
 dt = np.sqrt(m[1]/k[0])*1e-1
 #maxt = ((N/3.5)*np.sqrt(m[1]/k[1])*10)/dt
+
 
 y_0 = np.zeros(N)
 y_minus = np.zeros(N)
