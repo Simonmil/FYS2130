@@ -30,6 +30,17 @@ for t in range(1200):
 	y_0 = np.copy(y_pluss)
 	all_pos.append(y_0)
 
+
+plt.figure(2)
+plt.plot(all_pos[0], label='Pos at t-step = 0')
+plt.plot(all_pos[80], label='Pos at t-step = 80')
+plt.plot(all_pos[150], label='Pos at t-step = 150')
+plt.xlabel("Length of string")
+plt.ylabel("Amplitude")
+plt.legend()
+plt.title('Position of different timesteps for a standing sinewave.')
+
+
 fig = plt.figure(1)
 plot = ArtistAnimation(fig,anim,interval=25)
 plt.show()
