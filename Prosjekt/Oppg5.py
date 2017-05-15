@@ -25,7 +25,8 @@ count = 0
 
 for t in range(int(maxt)):
 	for i in range(1,int(N)-1):
-		y_pluss[i] = (dt**2*(-(k[i-1] + k[i])*y_0[i] + k[i-1]*y_0[i-1] + k[i]*y_0[i+1]))/m[i] + 2*y_0[i] - y_minus[i]
+		y_pluss[i] = (dt**2*(-(k[i-1] + k[i])*y_0[i] + k[i-1]*y_0[i-1]\
+		 + k[i]*y_0[i+1]))/m[i] + 2*y_0[i] - y_minus[i]
 		if i == 99:
 			pos99.append(y_pluss[i])
 			if y_pluss[i] > 0 and y_0[i] < 0:
@@ -52,5 +53,9 @@ frekv = np.linspace(0,1,len(pos99))
 
 
 plt.figure(2)
-plt.plot(frekv,2*abs(FFtpos99)**2)
+plt.plot(frekv,abs(FFtpos99)**2)
+plt.xlabel('Frequency')
+plt.ylabel(r'$|FFT(position99)|^2$')
+plt.title('The Fourier Transform of the position of element 100.')
+
 plt.show()

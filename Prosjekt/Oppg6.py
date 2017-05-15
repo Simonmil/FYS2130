@@ -17,15 +17,22 @@ y_minus = np.array([np.sin(7*np.pi*i/(N-1)) for i in range(int(N))])
 y_pluss = np.zeros(N)
 #E_tot = np.zeros(N)
 
-E_tot = np.zeros(N)
+E_tot = np.zeros(maxt)
 
 for t in range(int(maxt)):
 	for i in range(1,int(N)-1):
-		y_pluss[i] = (dt**2*(-(k[i-1] + k[i])*y_0[i] + k[i-1]*y_0[i-1] + k[i]*y_0[i+1]))/m[i] + 2*y_0[i] - y_minus[i]		
-		E_tot[i] = 0.5*m[i]*((y_pluss[i] - y_minus[i])/(2*dt))**2 + 0.5*k[i]*(y_0[i] - y_0[i-1])**2
+		y_pluss[i] = (dt**2*(-(k[i-1] + k[i])*y_0[i] + k[i-1]*y_0[i-1]\
+		 + k[i]*y_0[i+1]))/m[i] + 2*y_0[i] - y_minus[i]		
+		E_tot[t] += 0.5*m[i]*((y_pluss[i] - y_minus[i])/(2*dt))**2\
+		 + 0.5*k[i]*(y_0[i] - y_0[i-1])**2
 		
 	y_minus = np.copy(y_0)
 	y_0 = np.copy(y_pluss)
 
-plt.plot(E_tot)
+time = np.linspace(0,maxt,maxt)
+plt.plot(time,E_tot[:])
+plt.xlabel('Timesteps')
+plt.ylabel('Total energy')
+plt.title('The total energy in every timestep')
+
 plt.show()

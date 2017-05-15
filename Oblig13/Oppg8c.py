@@ -19,12 +19,12 @@ K = [24.,200.]
 T = N/Fs
 #t = np.linspace(0,T*(N-1)/int(N),N)
 t = np.linspace(0,N-1,Fs)
-f = c1*np.sin(2*np.pi*f1*t) + c2*np.sin(2*np.pi*f2*t)
+f = c1*np.sin(2*np.pi*f1*t) + c2*np.cos(2*np.pi*f2*t)
 FTsig = np.fft.fft(f,int(N))/N
 
 
 widths = np.arange(1,31)
-cwtmatr = signal.cwt(FTsig,signal.ricker,widths)
+cwtmatr = signal.cwt(FTsig[0:N/2],signal.ricker,widths)
 
-plt.imshow(cwtmatr,extent=[-1,1,1,31],cmap='PRGn',aspect='auto',vmax=np.abs(cwtmatr).max(),vmin = -np.abs(cwtmatr).max())
+plt.imshow(cwtmatr,extent=[-1,1,1,31],cmap='hot',aspect='auto',vmax=np.abs(cwtmatr).max(),vmin = -np.abs(cwtmatr).max())
 plt.show()
