@@ -17,7 +17,7 @@ f = c1*np.sin(2*np.pi*f1*t) + c2*np.cos(2*np.pi*f2*t)
 plt.plot(t[0:500],f[0:500])
 plt.xlabel('Tid [s]')
 plt.ylabel('Amplitude')
-plt.title(r'a) Plott av funksjonen $f = c_1\sin(2\pi*f_1t) + c_2\cos(2\pi*f_2t)$')
+plt.title(r'Plott av funksjonen $f = c_1\sin(2\pi*f_1t) + c_2\cos(2\pi*f_2t)$')
 
 fft = np.fft.fft(f)
 k = np.arange(N)

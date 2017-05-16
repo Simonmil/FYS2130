@@ -11,11 +11,9 @@ t = np.linspace(0,T,N)
 
 
 # Genererer signal
-x1 = 2*np.pi*f1*t; x2 = 2*np.pi*f2*t
-f = c1*np.sin(x1) + c2*np.cos(x2)
+f = c1*np.sin(2*np.pi*f1*t) + c2*np.cos(2*np.pi*f2*t)
 
 # Plott
-plt.subplot(1,2,1)
 plt.plot(t[0:400],f[0:400])
 plt.xlabel('Tid[s]',fontsize=20);plt.ylabel('f(t)', fontsize=20)
 plt.title('Tidsbilde',fontsize=23)
@@ -28,7 +26,7 @@ freq = k/T
 freq = np.linspace(0,fs*(N-1)/float(N), N)
 
 # Plott
-plt.subplot(1,2,2)
+plt.figure()
 plt.plot(freq[0:N/2.],(abs(F[0:N/2.])))
 plt.xlabel('Frekvens [Hz]',fontsize=20);plt.ylabel('|F(t)|', fontsize=20)
 plt.xlim([0.0,2000])
@@ -54,7 +52,7 @@ for K in Kverdi:
 	for j in range(M):
 		k = (K/w_a)**2
 		FTwl = np.exp(-k*((w-w_a)**2))
-		FTwl = FTwl - np.exp(-(K**2))*np.exp(-k*f*f)
+		FTwl = FTwl - np.exp(-(K**2))*np.exp(-k*f*f) 
 		FTwl = 2.0*FTwl
 
 		WL[j,:] = np.sqrt(abs(np.fft.ifft(FTwl*np.transpose(F))))

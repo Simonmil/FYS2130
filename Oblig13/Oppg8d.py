@@ -1,7 +1,7 @@
 import numpy as np
 import matplotlib.pylab as plt
 
-# Constants and stuff
+# Konstanter
 N = 8192.0
 f1 = 1000.0; f2 = 1600.0 # Hz
 c1 = 1.0; c2 = 1.7
@@ -12,28 +12,26 @@ t1 = 0.15; t2 = 0.5 # s
 sigma1 = 0.01; sigma2 = 0.10 # s
 
 
-
-## Generates a signal ##
+# Genererer et signal
 x1 = 2*np.pi*f1*t; x2 = 2*np.pi*f2*t
 e1 =(t-t1)/sigma1; e2 = (t-t2)/sigma2
 f = c1*np.sin(x1)*np.exp(-(e1)**2) + c2*np.cos(x2)*np.exp(-(e2)**2)
 
-## PLOT ##
-plt.subplot(1,2,1)
+# Plott 
 plt.plot(t,f)
 plt.xlabel('Tid[s]',fontsize=20);plt.ylabel('f(t)', fontsize=20)
 #plt.xlim([0.17,0.33])
 plt.title('Tidsbilde',fontsize=23)
 
 
-## Fourier transformation ##
+# Fourier transform
 F = np.fft.fft(f)
 k = np.arange(N)
 freq = k/T
 freq = np.linspace(0,fs*(N-1)/float(N), N)
 
-## PLOT ##
-plt.subplot(1,2,2)
+# Plott
+plt.figure()
 plt.plot(freq[0:N/2.],(abs(F[0:N/2.])))
 plt.xlabel('Frekvens [Hz]',fontsize=20);plt.ylabel('|F(t)|', fontsize=20)
 plt.xlim([0.0,2000])
@@ -41,9 +39,8 @@ plt.title('Frekvensbilde',fontsize=23)
 plt.tight_layout()
 plt.show()
 
-## Calculates the wavelet transformation of the signal ##
-## MORLET wavelets ##
-# Analysis frequency from i.g. 800 to 2000 Hz
+# MORLET wavelets 
+
 Kverdi = [24., 100., 200.]
 
 for K in Kverdi:
